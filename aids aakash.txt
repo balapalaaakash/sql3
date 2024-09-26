@@ -1,0 +1,192 @@
+Query : create a department table
+create table department_43
+( deptId  INT  PRIMARY KEY, 
+  deptName  VARCHAR2(20)  NOT NULL
+);
+
+table created
+
+query : create a employee table with foreign key of deparment table
+ empId, empName, hireDate, emailId, deptId 
+
+sql >
+CREATE TABLE Employee_43 (
+    empId INT PRIMARY KEY,
+    empName VARCHAR2(50) NOT NULL,
+    hireDate DATE NOT NULL,
+    emailId VARCHAR2(100) UNIQUE NOT NULL,
+    deptId INT,
+    FOREIGN KEY (deptId) REFERENCES department_43(deptId)
+);
+
+Table created.
+sql >
+INSERT INTO department_43 (deptId, deptName) VALUES
+(1, 'HR'),
+(2, 'IT'),
+(3, 'Finance'),
+(4, 'Marketing'),
+(5, 'Sales'),
+(6, 'Customer Service'),
+(7, 'Research and Development');
+
+Query : insert a row into department 
+
+INSERT INTO department_43 (deptId, deptName) VALUES (1, 'HR') ;
+
+sql >
+INSERT ALL
+INTO department_43 (deptId, deptName) VALUES (2, 'IT')
+INTO department_43 (deptId, deptName) VALUES (3, 'Finance')
+INTO department_43 (deptId, deptName) VALUES (4, 'Marketing')
+INTO department_43 (deptId, deptName) VALUES (5, 'Sales')
+INTO department_43 (deptId, deptName) VALUES (6, 'Customer Service')
+INTO department_43 (deptId, deptName) VALUES (7, 'Research')
+SELECT * FROM DUAL ;
+
+6 rows created.
+
+QUERY ; show contents of dpeartment_43 table ;
+sql > select * from deparment_43 ;
+output : 
+ DEPTID DEPTNAME
+---------- --------------------
+         1 HR
+         2 IT
+         3 Finance
+         4 Marketing
+         5 Sales
+         6 Customer Service
+         7 Research
+
+7 rows selected.
+
+
+Query : how to describe the deparment_43 table ;
+sql > desc department_43 ;
+output ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- -------------------
+ DEPTID                                    NOT NULL NUMBER(38)
+ DEPTNAME                                  NOT NULL VARCHAR2(20)
+
+query : insert a row into employees table ';
+SQL > 
+INSERT INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(1, 'John Doe', TO_DATE('2024-09-26', 'YYYY-MM-DD'), 'john.doe@example.com', 1);
+
+
+query : insert  Multiple rowS into employees table ';
+SQL >
+
+INSERT all
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(2, 'Jane Smith', TO_DATE('2023-02-20', 'YYYY-MM-DD'), 'jane.smith@example.com', 2)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(3, 'Alice Johnson', TO_DATE('2022-03-25', 'YYYY-MM-DD'), 'alice.johnson@example.com', 3)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(4, 'Bob Brown', TO_DATE('2024-04-30', 'YYYY-MM-DD'), 'bob.brown@example.com', 1)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(5, 'Charlie White', TO_DATE('2023-05-05', 'YYYY-MM-DD'), 'charlie.white@example.com', 4)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(6, 'Diana Green', TO_DATE('2023-06-10', 'YYYY-MM-DD'), 'diana.green@example.com', 5)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(7, 'Ethan Black', TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'ethan.black@example.com', 2)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(8, 'Fiona Blue', TO_DATE('2022-08-20', 'YYYY-MM-DD'), 'fiona.blue@example.com', 6)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(9, 'George Grey', TO_DATE('2023-09-25', 'YYYY-MM-DD'), 'george.grey@example.com', 3)
+INTO Employee_43 (empId, empName, hireDate, emailId, deptId) VALUES
+(10, 'Hannah Purple', TO_DATE('2024-10-30', 'YYYY-MM-DD'), 'hannah.purple@example.com', 7)
+SELECT * FROM DUAL ;
+
+9 rows created.
+
+
+SQL> select * from employee_43 ;
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+         1 John Doe                                           26-SEP-24
+john.doe@example.com
+         1
+
+         2 Jane Smith                                         20-FEB-23
+jane.smith@example.com
+         2
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+
+         3 Alice Johnson                                      25-MAR-22
+alice.johnson@example.com
+         3
+
+         4 Bob Brown                                          30-APR-24
+bob.brown@example.com
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+         1
+
+         5 Charlie White                                      05-MAY-23
+charlie.white@example.com
+         4
+
+         6 Diana Green                                        10-JUN-23
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+diana.green@example.com
+         5
+
+         7 Ethan Black                                        15-JUL-24
+ethan.black@example.com
+         2
+
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+         8 Fiona Blue                                         20-AUG-22
+fiona.blue@example.com
+         6
+
+         9 George Grey                                        25-SEP-23
+george.grey@example.com
+         3
+
+     EMPID EMPNAME                                            HIREDATE
+---------- -------------------------------------------------- ---------
+EMAILID
+--------------------------------------------------------------------------------
+    DEPTID
+----------
+
+        10 Hannah Purple                                      30-OCT-24
+hannah.purple@example.com
+         7
+
+
+10 rows selected.
+
+SQL>
